@@ -1,5 +1,4 @@
 import React, { useState, useCallback } from 'react';
-// import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import { gallery } from '../../public/data';
 

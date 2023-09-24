@@ -11,11 +11,12 @@ import { auth } from "../firebase";
 const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
       const response = await createUserWithEmailAndPassword(
         auth,
@@ -27,9 +28,10 @@ const Signup = () => {
       setTimeout(() => {
         navigate("/");
       }, 1500);
-
+      setLoading(false);
       alert("Your account has been created");
     } catch (error) {
+      setLoading(false);
       console.error(error.message);
     }
   };
@@ -100,7 +102,7 @@ const Signup = () => {
               onClick={handleSignUp}
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Sign up
+              {loading ? "Loading" : "Submit"}
             </button>
             <p className="mt-3 text-center text-sm text-gray-500">
               Already have an account?{' '}

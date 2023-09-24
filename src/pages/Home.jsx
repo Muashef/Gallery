@@ -7,6 +7,7 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword, } from 'fir
 const Home = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate()
 
 
@@ -28,14 +29,17 @@ const Home = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log(userCredential);
         navigate("/gallery-image");
+        setLoading(false);
       })
       .catch((error) => {
-        console.log(error);
+        alert(error);
+        setLoading(false);
         if (error.code === "auth/wrong-password") {
         } else if (error.code === "auth/invalid-email") {
         } else {
@@ -107,14 +111,12 @@ const Home = () => {
             </div>
 
             <div>
-              {/* <Link to='/gallery-image'> */}
                 <button
                   type="submit"
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
-                  Sign in
+                  {loading ? "Loading" : "Submit"}
                 </button>
-              {/* </Link> */}
               <p className="mt-3 text-center text-sm text-gray-500">
                 Don't have an account?{' '}
                 <Link to="/signup" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
