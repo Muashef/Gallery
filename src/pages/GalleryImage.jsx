@@ -13,7 +13,7 @@ const GalleryImage = () => {
 
   const handleDragEnd = (result) => {
     setDraggedImage(null);
-    if (!result.destination) return; // Dropped outside a valid Droppable area
+    if (!result.destination) return; 
 
     const updatedImages = Array.from(updatedGallery);
     const [reorderedImage] = updatedImages.splice(result.source.index, 1);
@@ -26,14 +26,6 @@ const GalleryImage = () => {
   const handleSearchChange = useCallback((event) => {
     setSearchTerm(event.target.value);
   }, []);
-
-//   const handleDragStart = (image) => {
-//     setDraggedImage(image);
-//   };
-
-//   const handleDragEnd = () => {
-//     setDraggedImage(null);
-//   };
 
   const filteredImages = gallery.filter((image) => {
     return image.tags.some((tag) =>
