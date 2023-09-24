@@ -31,9 +31,9 @@ export const gallery = [
     },
     {
         id: 7,
-        title: 'Oceans',
-        img: 'https://images.unsplash.com/photo-1505144808419-1957a94ca61e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1526&q=80',
-        tags: ['Sea', 'Hd Ocean Wallpapers']
+        title: 'Fashion',
+        img: 'https://images.unsplash.com/photo-1694631031738-0e857f3e872a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDExfFM0TUtMQXNCQjc0fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=500&q=60',
+        tags: ['Beauty', 'Fashion']
     },
     {
         id: 8,
@@ -43,15 +43,15 @@ export const gallery = [
     },
     {
         id: 9,
-        title: 'Safari',
-        img: 'https://images.unsplash.com/photo-1682687982093-4773cb0dbc2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80',
-        tags: ['Wildlife', 'Animal Images & Pictures']
+        title: 'Arts & Culture',
+        img: 'https://images.unsplash.com/photo-1694638278223-4c3907aa2354?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDd8YkRvNDhjVWh3bll8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
+        tags: ['Arts', 'Culture', 'Model']
     },
     {
         id: 10,
-        title: 'Stones',
-        img: 'https://images.unsplash.com/photo-1458501534264-7d326fa0ca04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-        tags: ['Rock', 'Balance', 'Wellness']
+        title: 'Sports',
+        img: 'https://images.unsplash.com/photo-1692432825053-db5c844fa91f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDE3fEJuLURqcmNCcndvfHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=500&q=60',
+        tags: ['Sport', 'Balance', 'Bike']
     },
     {
         id: 11,
