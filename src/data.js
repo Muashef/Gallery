@@ -6,12 +6,6 @@ export const gallery = [
         tags: ['Business', 'Work' ]
     },
     {
-        id: 2,
-        title: 'Business and Work',
-        img: 'https://plus.unsplash.com/premium_photo-1694172058230-edf80b81134f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2N3x8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
-        tags: ['Business', 'Work', 'Exposure']
-    },
-    {
         id: 3,
         title: 'Fashion & Beauty',
         img: 'https://plus.unsplash.com/premium_photo-1690366917352-3bd8bc0a0761?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDE1fFM0TUtMQXNCQjc0fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=500&q=60',
@@ -76,6 +70,12 @@ export const gallery = [
         title: 'Sunflower',
         img: 'https://images.unsplash.com/photo-1504567961542-e24d9439a724?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80',
         tags: ['Spring Images', 'Flower Images']
+    },
+    {
+        id: 2,
+        title: 'Business and Work',
+        img: 'https://plus.unsplash.com/premium_photo-1694172058230-edf80b81134f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2N3x8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
+        tags: ['Business', 'Work', 'Exposure']
     },
     {
         id: 14,
