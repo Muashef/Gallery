@@ -4,20 +4,31 @@ import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import { gallery } from '../../public/data';
 
 const Image = ({ title, tags, img, id, index }) => (
-<Draggable draggableId={`image-${id}`} index={index}>
-{(provided) => (
-  <div className="p-4 bg-white shadow rounded-lg mb-4"
-    ref={provided.innerRef}
-    {...provided.draggableProps}
-    {...provided.dragHandleProps}
-  >
-    <img className="object-cover w-full block" src={img} alt="" />
-    <h2 className="text-2xl font-bold mt-2">{title}</h2>
-    <p className="block text-[#353A43] text-lg mt-4">{tags.join(', ')}</p>
-  </div>
-   )}
-</Draggable>
-);
+    <Draggable draggableId={`image-${id}`} index={index} type="IMAGE">
+      {(provided) => (
+        <Droppable droppableId={`droppable-${id}`} type="IMAGE">
+          {(dropProvided) => (
+            <div
+              className="p-4 bg-white shadow rounded-lg mb-4"
+              ref={(el) => {
+                provided.innerRef(el);
+                dropProvided.innerRef(el);
+              }}
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              {...dropProvided.droppableProps}
+            >
+              <img className="object-cover w-full block" src={img} alt="" />
+              <h2 className="text-2xl font-bold mt-2">{title}</h2>
+              <p className="block text-[#353A43] text-lg mt-4">
+                {tags.join(', ')}
+              </p>
+            </div>
+          )}
+        </Droppable>
+      )}
+    </Draggable>
+  );
 
 const GalleryImage = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -53,13 +64,21 @@ const GalleryImage = () => {
 
 const handleDragEnd = (result) => {
     if (!result.destination) return; // Return if dropped outside the droppable area
-
-    const { source, destination } = result;
-    const updatedImages = Array.from(filteredImages);
-    const [draggedImage] = updatedImages.splice(source.index, 1);
-    updatedImages.splice(destination.index, 0, draggedImage);
-
-    setFilteredImages(updatedImages);
+  
+    const { source, destination, draggableId, type } = result;
+  
+    if (type === 'IMAGE') {
+      const updatedImages = [...filteredImages];
+      const draggedImage = updatedImages.find(
+        (image) => `image-${image.id}` === draggableId
+      );
+  
+      if (draggedImage) {
+        updatedImages.splice(source.index, 1); // Remove the dragged image from the source index
+        updatedImages.splice(destination.index, 0, draggedImage); // Insert the dragged image at the destination index
+        setFilteredImages(updatedImages);
+      }
+    }
   };
 
 
@@ -103,7 +122,7 @@ const handleDragEnd = (result) => {
         </div>
       
         <DragDropContext onDragEnd={handleDragEnd}>
-        <Droppable droppableId="gallery">
+        <Droppable droppableId='gallery'>
           {(provided) => (
             <div
               {...provided.droppableProps}

@@ -1,25 +1,47 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-// const firebase = require('firebase/app');
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { auth } from '../firebase';
+// import { initializeApp } from "firebase/app";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, } from 'firebase/auth';
 
 const Home = () => {
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate()
 
-  const handleSignIn = async (event) => {
-    event.preventDefault();
-    const email = event.target.email.value;
-    const password = event.target.password.value;
 
-    try {
-      await firebase.auth().signInWithEmailAndPassword(email, password);
-      // Signed in successfully
-      console.log('User signed in:', firebase.auth().currentUser);
-      // Redirect or perform other actions after signin
-    } catch (error) {
-      console.error('Error signing in:', error);
-      // Handle sign-in error here (e.g., display an error message)
-    }
+  // const handleSignIn = async (event) => {
+  //   event.preventDefault();
+  //   const email = event.target.email.value;
+  //   const password = event.target.password.value;
+
+  //   try {
+  //     await firebase.auth().signInWithEmailAndPassword(email, password);
+  //     // Signed in successfully
+  //     console.log('User signed in:', firebase.auth().currentUser);
+  //     // Redirect or perform other actions after signin
+  //   } catch (error) {
+  //     console.error('Error signing in:', error);
+  //     // Handle sign-in error here (e.g., display an error message)
+  //   }
+  // };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log(userCredential);
+        navigate("/gallery-image");
+      })
+      .catch((error) => {
+        console.log(error);
+        if (error.code === "auth/wrong-password") {
+        } else if (error.code === "auth/invalid-email") {
+        } else {
+          return;
+        }
+      });
   };
 
   return (
@@ -45,7 +67,7 @@ const Home = () => {
         </div>
 
         <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-4 w-full">
+          <form className="space-y-4 w-full" onSubmit={handleLogin}>
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                 Email address
@@ -55,8 +77,9 @@ const Home = () => {
                   id="email"
                   name="email"
                   type="email"
+                  value={email}
+        onChange={(e) => setEmail(e.target.value)}
                   autoComplete="email"
-                  placeholder='user@example'
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 outline-none px-3 sm:text-sm sm:leading-6"
                 />
@@ -74,7 +97,8 @@ const Home = () => {
                   id="password"
                   name="password"
                   type="password"
-                  placeholder='1Password'
+                  value={password}
+            onChange={(e) => setPassword(e.target.value)}
                   autoComplete="current-password"
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 outline-none px-3 sm:text-sm sm:leading-6"
@@ -83,20 +107,20 @@ const Home = () => {
             </div>
 
             <div>
-              <Link to='/gallery-image'>
+              {/* <Link to='/gallery-image'> */}
                 <button
                   type="submit"
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Sign in
                 </button>
-              </Link>
-              {/* <p className="mt-3 text-center text-sm text-gray-500">
+              {/* </Link> */}
+              <p className="mt-3 text-center text-sm text-gray-500">
                 Don't have an account?{' '}
                 <Link to="/signup" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                   Signup
                 </Link>
-            </p> */}
+            </p>
             </div>
           </form>
         </div>
